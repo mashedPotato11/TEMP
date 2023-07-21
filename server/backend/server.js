@@ -13,7 +13,14 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+  })
+);
 app.get("/", (req, res) => {
   res.send("Api is running successfully");
 });
@@ -32,7 +39,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeOut: 60000,
   cors: {
-    origin: "https://chat-hub-server.onrender.com",
+    origin: "http://localhost:3000",
   },
 });
 
