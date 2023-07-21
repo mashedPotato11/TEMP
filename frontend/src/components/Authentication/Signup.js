@@ -60,7 +60,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        "https://chat-hub-server.onrender.com/api/user",
         { name, email, password, pic },
         config
       );

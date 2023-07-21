@@ -42,7 +42,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "https://chat-hub-server.onrender.com/api/user/login",
         { email, password },
         config
       );
