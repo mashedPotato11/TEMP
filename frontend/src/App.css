@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap");
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  background-color: #1a1110;
+  /* background-color: #2e262592; */
+  /* background-color: black; */
+  color: rgba(255, 255, 255, 0.951);
+  background-image: url("./background2.jpg");
+  background-size: cover;
+  background-position: center;
+}
