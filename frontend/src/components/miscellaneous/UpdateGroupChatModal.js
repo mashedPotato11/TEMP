@@ -196,6 +196,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
       console.log(data);
       setLoading(false);
       setSearchResult(data);
+      console.log(searchResult);
     } catch (error) {
       toast({
         title: "Error Occured!",

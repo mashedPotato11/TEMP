@@ -174,7 +174,7 @@ const GroupChatModal = ({ children }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            {selectedUsers.map((u) => (
+            {Array.from(selectedUsers).map((u) => (
               <UserBadgeItem
                 key={user._id}
                 user={u}
@@ -185,7 +185,7 @@ const GroupChatModal = ({ children }) => {
               // <ChatLoading />
               <div>Loading...</div>
             ) : (
-              searchResult
+              Array.from(searchResult)
                 ?.slice(0, 4)
                 ?.map((user) => (
                   <UserListItem
