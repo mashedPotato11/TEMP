@@ -82,7 +82,10 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `https://chat-hub-server.onrender.com/api/user?search=${search}`,
+        config
+      );
       // console.log(data)
       setLoading(false);
       setSearchResult(data);
@@ -108,7 +111,11 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post("/api/chat", { userId }, config);
+      const { data } = await axios.post(
+        "https://chat-hub-server.onrender.com/api/chat",
+        { userId },
+        config
+      );
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
@@ -249,7 +256,7 @@ const SideDrawer = () => {
             {loading ? (
               <ChatLoading />
             ) : (
-              Array.from(searchResult).map((user) => (
+              searchResult?.map((user) => (
                 <UserListItem
                   key={user._id}
                   user={user}

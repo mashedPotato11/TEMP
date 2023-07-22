@@ -55,10 +55,14 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `https://chat-hub-server.onrender.com/api/user?search=${search}`,
+        config
+      );
       // console.log(data);
       setLoading(false);
       setSearchResult(data);
+      // console.log(searchResult);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -116,7 +120,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `/api/chat/group`,
+        `https://chat-hub-server.onrender.com/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),
@@ -174,7 +178,7 @@ const GroupChatModal = ({ children }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            {Array.from(selectedUsers).map((u) => (
+            {selectedUsers.map((u) => (
               <UserBadgeItem
                 key={user._id}
                 user={u}
@@ -185,15 +189,13 @@ const GroupChatModal = ({ children }) => {
               // <ChatLoading />
               <div>Loading...</div>
             ) : (
-              Array.from(searchResult)
-                ?.slice(0, 4)
-                ?.map((user) => (
-                  <UserListItem
-                    key={user._id}
-                    user={user}
-                    handleFunction={() => handleGroup(user)}
-                  />
-                ))
+              searchResult?.map((user) => (
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => handleGroup(user)}
+                />
+              ))
             )}
           </ModalBody>
 
